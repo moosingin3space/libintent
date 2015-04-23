@@ -9,11 +9,11 @@
 typedef struct {
     int param_id;
 
-    stringptr buffer;
+    stringptr_t buffer;
 } tuple_t;
 
 typedef struct {
-    stringptr url;
+    stringptr_t url;
 
     int num_params;
     tuple_t* params;
