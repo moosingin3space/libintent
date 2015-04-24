@@ -1,11 +1,17 @@
 #include "stringptr.h"
 #include <string.h>
+#include <stdlib.h>
 
 stringptr_t* stringptr_alloc(int len)
 {
     stringptr_t* str = calloc(1, sizeof(stringptr_t));
     str->len = len;
     str->buf = calloc(len, sizeof(char));
+    if (str->buf == NULL)
+    {
+        free(str);
+        return NULL;
+    }
     return str;
 }
 
@@ -17,15 +23,15 @@ int stringptr_concat(stringptr_t* str, stringptr_t* a, stringptr_t* b)
         // TODO see if this can be handled more gracefully.
         return -1;
     }
-    str->len = a->len + b->len;
-    str->buf = calloc(len, sizeof(char));
-    int len = strlcpy(str->buf, a->buf, str->len);
-    if (len >= str->len)
+    str->len = a->len + b->len + 1;
+    str->buf = calloc(str->len, sizeof(char));
+    if (str->buf == NULL)
     {
-        // TODO This is a bug in the library, for now just return the length
-        return len;
+        // Return an error condition if allocation fails
+        return -1;
     }
-    len = strlcpy(&(str->buf[len]), b->buf, str->len - len);
+    int len = strlcpy(str->buf, a->buf, str->len);
+    len = strlcat(str->buf, b->buf, str->len);
     return len;
 }
 
@@ -33,5 +39,5 @@ void stringptr_dealloc(stringptr_t* str)
 {
     str->len = -1;
     free(str->buf);
-    free(str);
 }
+
