@@ -18,7 +18,8 @@ $(BUILDDIR)/%.o: %.c $(HDR)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
 $(BUILDDIR)/$(LIBNAME): $(OBJ)
-	$(LD) -o $@ $^ $(CFLAGS) $(LIBS)
+	ar ru $@ $^
+	ranlib $@
 
 .PHONY: all clean
 
