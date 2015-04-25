@@ -1,7 +1,6 @@
 // Prevents double-definitions
 #pragma once
 
-#include <czmq.h>
 #include "stringptr.h"
 #include <string.h>
 #include <memory.h>
