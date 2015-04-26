@@ -2,6 +2,14 @@
 #include <string.h>
 #include <stdlib.h>
 
+stringptr_t* stringptr_literal(const char* str)
+{
+    stringptr_t* str = calloc(1, sizeof(stringptr_t));
+    str->len = strlen(str);
+    str->buf = str;
+    return str;
+}
+
 stringptr_t* stringptr_alloc(int len)
 {
     stringptr_t* str = calloc(1, sizeof(stringptr_t));

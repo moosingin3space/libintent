@@ -7,6 +7,9 @@ typedef struct {
     int len;
 } stringptr_t;
 
+// Statically create a string
+stringptr_t* stringptr_literal(const char* str);
+
 // Dynamically allocates a string
 stringptr_t* stringptr_alloc(int len);
 
