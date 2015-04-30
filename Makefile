@@ -3,9 +3,9 @@ include config.mk
 BUILDDIR=out
 LIBNAME=libintent.a
 
-HDR=stringptr.h libintent.h
+HDR=libintent.h
 
-_OBJ=stringptr.o
+_OBJ=
 OBJ=$(patsubst %,$(BUILDDIR)/%,$(_OBJ))
 
 all: $(BUILDDIR) $(BUILDDIR)/$(LIBNAME)
