@@ -1,7 +1,9 @@
 #include "libintent.h"
 #include "internal.h" 
 
-int intent_register(const char* protocol, IntentHandler handler)
+int intent_register(const char* protocol, 
+                    IntentValidator validator,
+                    IntentHandler handler)
 {
     int err;
     if ((err = create_intent_directory())) {

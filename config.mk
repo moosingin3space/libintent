@@ -12,6 +12,6 @@ LIB_CFLAGS=$(LIBBSD_CFLAGS)
 LIBDIRS=$(LIBBSD_DIR) 
 LIBS=$(LIBBSD_LIB) -lm
 
-CFLAGS=-Wall -Werror $(LIB_CFLAGS)
+CFLAGS=-Wall -Werror -std=gnu99 $(LIB_CFLAGS)
 LDFLAGS=-static $(LIBS)
 

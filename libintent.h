@@ -29,10 +29,10 @@ typedef struct {
 } application_t;
 
 // Define a type for function pointers that validate intents
-typedef bool (*IntentValidator)(const intent_t intent);
+typedef int (*IntentValidator) (const intent_t intent);
 
 // Define a type for function pointers that respond to intents
-typedef void (*IntentHandler)(const intent_t intent);
+typedef void (*IntentHandler) (const intent_t intent);
 
 // Register an intent at a protocol
 int intent_register(const char* protocol, 

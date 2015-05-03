@@ -5,7 +5,9 @@ LIBNAME=libintent.a
 
 HDR=libintent.h internal.h
 
-_OBJ=create_intent_directory.o intent_register.o
+_OBJ=create_intent_directory.o \
+	 intent_register.o \
+	 fork_intent_manager_process.o
 OBJ=$(patsubst %,$(BUILDDIR)/%,$(_OBJ))
 
 all: $(BUILDDIR) $(BUILDDIR)/$(LIBNAME)
