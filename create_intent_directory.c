@@ -1,15 +1,6 @@
-#include "libintent.h"
-#include <stdio.h>
-#include <dirent.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <unistd.h>
-#include <errno.h>
-#include <pwd.h>
+#include "internal.h"
 
-#define INTENT_DIRECTORY ".intent/handler"
-
-int _create_intent_directory()
+int create_intent_directory()
 {
     // First, find the user's home directory
     struct passwd* pw = getpwuid(getuid());
@@ -32,7 +23,7 @@ int _create_intent_directory()
         // Existence problem?
         if (err == ENOENT) {
             // Make intent directory with permissions 0700
-            if (err = mkdir(INTENT_DIRECTORY, S_IRWXU)) {
+            if ((err = mkdir(INTENT_DIRECTORY, S_IRWXU))) {
                 return err;
             }
         } else {
@@ -47,17 +38,4 @@ int _create_intent_directory()
 toolong:
     // TODO please figure out a better way of dealing with this
     return EPERM;
-}
-
-int intent_register(const char* protocol, IntentHandler handler)
-{
-    int err;
-    if ((err = _create_intent_directory())) {
-        return err;
-    }
-
-    // Check for a file that is named after the protocol
-
-    // TODO complete this later
-    return 0;
 }
