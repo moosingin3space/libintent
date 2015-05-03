@@ -19,7 +19,7 @@ typedef struct {
 } intent_t;
 
 // Defines a type for function pointers that respond to intents
-typedef bool (*IntentHandler)(const intent_t intent);
+typedef void (*IntentHandler)(const intent_t intent);
 
 // Register an intent from a protocol
 int intent_register(const char* protocol, IntentHandler handler);
